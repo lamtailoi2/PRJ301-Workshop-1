@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/user/UserDAO.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/controller/DeleteController.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/web/WEB-INF/web.xml</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/controller/DispatchController.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/controller/UpdateController.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/web/invalid.html</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/mobile/MobileDTO.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/mobile/MobileDAO.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/controller/SearchController.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/web/search.jsp</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/controller/LoginController.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/user/UserDTO.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/web/login.html</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/util/DBHelper.java</file>
+        </group>
+    </open-files>
+</project-private>
