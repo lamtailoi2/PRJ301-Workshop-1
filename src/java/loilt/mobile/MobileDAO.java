@@ -53,6 +53,47 @@ public class MobileDAO {
         return list;
     }
 
+    public List<MobileDTO> searchByValue(float minPrice, float maxPrice) throws SQLException, ClassNotFoundException {
+        List<MobileDTO> list = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "SELECT mobileId, mobileName, price, description, quantity, notSale , yearOfProduction "
+                        + "FROM tbl_Mobile "
+                        + "WHERE price >= ? AND price <= ?";
+                stm = con.prepareStatement(sql);
+                stm.setFloat(1, minPrice);
+                stm.setFloat(2, maxPrice);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String id = rs.getString("mobileId");
+                    String name = rs.getString("mobileName");
+                    float price = rs.getFloat("price");
+                    String description = rs.getString("description");
+                    int yearOfProduction = rs.getInt("yearOfProduction");
+                    int quantity = rs.getInt("quantity");
+                    boolean notSale = rs.getBoolean("notSale");
+                    list.add(new MobileDTO(id, name, price, description, quantity, yearOfProduction, notSale));
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
+
     public boolean deleteById(String id) throws ClassNotFoundException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -182,4 +223,5 @@ public class MobileDAO {
         }
         return false;
     }
+
 }

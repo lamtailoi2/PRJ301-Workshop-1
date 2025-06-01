@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package loilt.controller;
 
 import jakarta.servlet.RequestDispatcher;
@@ -11,12 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-/**
- *
- * @author pc
- */
 @WebServlet(name = "DispatchController", urlPatterns = {"/DispatchController"})
 public class DispatchController extends HttpServlet {
 
@@ -35,6 +26,8 @@ public class DispatchController extends HttpServlet {
     private final String DELETE_CONTROLLER = "DeleteController";
     private final String UPDATE_CONTROLLER = "UpdateController";
     private final String CREATE_MOBILE_CONTROLLER = "CreateMobileController";
+    private final String ADD_TO_CART_CONTROLLER = "AddToCartController";
+    private final String REMOVE_FROM_CART_CONTROLLER = "RemoveFromCartController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -54,6 +47,10 @@ public class DispatchController extends HttpServlet {
                 url = UPDATE_CONTROLLER;
             } else if (action.equals("Create")) {
                 url = CREATE_MOBILE_CONTROLLER;
+            } else if (action.equals("Add To Cart")) {
+                url = ADD_TO_CART_CONTROLLER;
+            } else if (action.equals("Remove Item")) {
+                url = REMOVE_FROM_CART_CONTROLLER;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

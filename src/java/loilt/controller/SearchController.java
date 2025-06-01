@@ -35,26 +35,35 @@ public class SearchController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private final String SEARCH_PAGE = "search.jsp";
+    private final String SHOP_PAGE = "shop.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String role = request.getParameter("txtRole");
-        String searchValue = request.getParameter("txtSearchValue");
+        String url = SHOP_PAGE;
         try {
-            if (Integer.parseInt(role) == 0) {
-                // TODO 
-            } else {
+            String searchValue = request.getParameter("txtSearchValue");
+
+            if (Integer.parseInt(role) == 2) {
                 MobileDAO dao = new MobileDAO();
                 List<MobileDTO> list = dao.searchByIdOrName(searchValue);
                 request.setAttribute("SEARCH_RESULT", list);
-                   
+                url = SEARCH_PAGE;
+            } else {
+                String minPrice = request.getParameter("txtMinPrice");
+                String maxPrice = request.getParameter("txtMaxPrice");
+                MobileDAO dao = new MobileDAO();
+                List<MobileDTO> list = dao.searchByValue(Float.parseFloat(minPrice), Float.parseFloat(maxPrice));
+                request.setAttribute("SEARCH_RESULT", list);
             }
         } catch (SQLException ex) {
             Logger.getLogger(SearchController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SearchController.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
     }

@@ -5,12 +5,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import loilt.mobile.MobileDAO;
 import loilt.mobile.MobileDTO;
+import loilt.user.UserDTO;
 import loilt.util.ValidationHelper;
 
 @WebServlet(name = "UpdateController", urlPatterns = {"/UpdateController"})
@@ -28,6 +30,20 @@ public class UpdateController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        // Check role
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            response.sendRedirect("login.html");
+            return;
+        } else {
+            UserDTO user = (UserDTO) session.getAttribute("USER");
+            if (user == null || user.getRole() != 2) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
+            }
+        }
+
         String url = "";
         String mobileId = request.getParameter("txtMobileId");
         String price = request.getParameter("txtPrice");

@@ -22,65 +22,71 @@
             <input type="submit" value="Search" name="btAction" />
         </form>
 
+        <c:if test="${not empty param.txtSearchValue}">
+            <c:choose>
+                <c:when test="${not empty SEARCH_RESULT}">
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>YearOfProduction</th>
+                                <th>Quantity</th>
+                                <th>Not Sale</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="mobile" items="${SEARCH_RESULT}">
+                                <tr>
+                            <form action="DispatchController" method="POST">
 
+                                <td>
+                                    ${mobile.mobileId}
+                                    <input type="hidden" name="txtMobileId" value="${mobile.mobileId}" />
+                                </td>
+                                <td>
+                                    ${mobile.mobileName}
+                                    <input type="hidden" name="txtMobileName" value="${mobile.mobileName}" />
+                                </td>
+                                <td>
+                                    <input type="text" name="txtPrice" value="${mobile.price}" />
 
+                                </td>
+                                <td>
+                                    <input type="text" name="txtDescription" value="${mobile.description}" />
 
-        <c:if test="${not empty SEARCH_RESULT}">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Description</th>
-                        <th>YearOfProduction</th>
-                        <th>Quantity</th>
-                        <th>Not Sale</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="mobile" items="${SEARCH_RESULT}">
-                        <tr>
-                    <form action="DispatchController" method="POST">
+                                </td>
+                                <td>
+                                    <input type="text" name="txtYearOfProduction" value="${mobile.yearOfProduction}" />
 
-                        <td>
-                            ${mobile.mobileId}
-                            <input type="hidden" name="txtMobileId" value="${mobile.mobileId}" />
-                        </td>
-                        <td>
-                            ${mobile.mobileName}
-                            <input type="hidden" name="txtMobileName" value="${mobile.mobileName}" />
-                        </td>
-                        <td>
-                            <input type="text" name="txtPrice" value="${mobile.price}" />
+                                </td>
+                                <td>
+                                    <input type="text" name="txtQuantity" value="${mobile.quantity}" />
 
-                        </td>
-                        <td>
-                            <input type="text" name="txtDescription" value="${mobile.description}" />
+                                </td>
 
-                        </td>
-                        <td>
-                            <input type="text" name="txtYearOfProduction" value="${mobile.yearOfProduction}" />\
-
-                        </td>
-                        <td>
-                            <input type="text" name="txtQuantity" value="${mobile.quantity}" />
-
-                        </td>
-
-                        <td> <input type="checkbox" name="txtNotSale" value="ON" ${mobile.notSale ? 'checked="checked"' : ''} /> </td>
-                        <td>
-                            <input type="submit" value="Update" name="btAction" />
-                            <input type="submit" value="Delete" name="btAction"/>
-                            <input type="hidden" name="lastSearchValue" value="${param.txtSearchValue}" />
-                            <input type="hidden" name="txtRole" value="${role}" />
-                        </td>
-                    </form>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+                                <td> <input type="checkbox" name="txtNotSale" value="ON" ${mobile.notSale ? 'checked="checked"' : ''} /> </td>
+                                <td>
+                                    <input type="submit" value="Update" name="btAction" />
+                                    <input type="submit" value="Delete" name="btAction"/>
+                                    <input type="hidden" name="lastSearchValue" value="${param.txtSearchValue}" />
+                                </td>
+                            </form>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <h2>No Mobile Recorded</h2>
+        </c:otherwise>
+    </c:choose>
 </c:if>
+
+
+
 </body>
 </html>

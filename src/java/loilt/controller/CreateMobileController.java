@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 import loilt.mobile.CreateMobileError;
 import loilt.mobile.MobileDAO;
 import loilt.mobile.MobileDTO;
+import loilt.user.UserDTO;
 import loilt.util.ValidationHelper;
 
 @WebServlet(name = "CreateMobileController", urlPatterns = {"/CreateMobileController"})
@@ -28,10 +30,26 @@ public class CreateMobileController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private final String SUCCESS_PAGE = "createSuccess.html";
+    private final String LOGIN_PAGE = "login.html";
+    private final String CREATE_MOBILE_PAGE = "createMobile.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        // Check role
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            response.sendRedirect(LOGIN_PAGE);
+            return;
+        } else {
+            UserDTO user = (UserDTO) session.getAttribute("USER");
+            if (user == null || user.getRole() != 2) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
+            }
+        }
+
         String mobileId = request.getParameter("txtMobileId");
         String mobileName = request.getParameter("txtMobileName");
         String price = request.getParameter("txtMobilePrice");
@@ -39,7 +57,7 @@ public class CreateMobileController extends HttpServlet {
         String quantity = request.getParameter("txtQuantity");
         String yearOfProduction = request.getParameter("txtYearOfProduction");
         String notSale = request.getParameter("txtNotSale");
-        String url = "createMobile.jsp";
+        String url = CREATE_MOBILE_PAGE;
         try {
             MobileDAO dao = new MobileDAO();
             CreateMobileError errors = new CreateMobileError();

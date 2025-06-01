@@ -37,7 +37,8 @@ public class LoginController extends HttpServlet {
      */
     private final String INVALID_PAGE = "invalid.html";
     private final String SEARCH_PAGE = "search.jsp";
-    
+    private final String SHOP_PAGE = "shop.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -51,7 +52,12 @@ public class LoginController extends HttpServlet {
                 UserDTO user = dao.getUserById(userId);
                 HttpSession session = request.getSession();
                 session.setAttribute("USER", user);
-                url = SEARCH_PAGE;
+                if (user.getRole() == 2) {
+                    url = SEARCH_PAGE;
+                } else {
+                    url = SHOP_PAGE;
+                }
+
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
