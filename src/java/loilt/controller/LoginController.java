@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import loilt.user.UserDAO;
@@ -36,7 +37,7 @@ public class LoginController extends HttpServlet {
      */
     private final String INVALID_PAGE = "invalid.html";
     private final String SEARCH_PAGE = "search.jsp";
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -45,7 +46,7 @@ public class LoginController extends HttpServlet {
         String url = INVALID_PAGE;
         try {
             UserDAO dao = new UserDAO();
-            boolean result = dao.checkLogin(userId, password);
+            boolean result = dao.checkLogin(userId, Integer.parseInt(password));
             if (result) {
                 UserDTO user = dao.getUserById(userId);
                 HttpSession session = request.getSession();
@@ -55,6 +56,8 @@ public class LoginController extends HttpServlet {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NumberFormatException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             response.sendRedirect(url);

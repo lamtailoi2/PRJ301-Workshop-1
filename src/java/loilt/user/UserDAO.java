@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class UserDAO implements Serializable {
 
-    public boolean checkLogin(String userId, String password) throws ClassNotFoundException, SQLException {
+    public boolean checkLogin(String userId, int password) throws ClassNotFoundException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -23,8 +23,8 @@ public class UserDAO implements Serializable {
                 stm.setString(1, userId);
                 rs = stm.executeQuery();
                 if (rs.next()) {
-                    String _password = rs.getString("password");
-                    return _password.equals(password);
+                    int _password = rs.getInt("password");
+                    return _password == password;
                 }
             }
             return false;
@@ -61,7 +61,7 @@ public class UserDAO implements Serializable {
                 rs = stm.executeQuery();
                 if (rs.next()) {
                     String userId = rs.getString("userId");
-                    String password = rs.getString("password");
+                    int password = rs.getInt("password");
                     String fullName = rs.getString("fullName");
                     int role = rs.getInt("role");
                     user = new UserDTO(userId, password, fullName, role);

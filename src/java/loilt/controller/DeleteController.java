@@ -30,7 +30,7 @@ public class DeleteController extends HttpServlet {
         String mobileId = request.getParameter("txtMobileId");
         String lastSearchValue = request.getParameter("lastSearchValue");
         String role = request.getParameter("txtRole");
-        String url = "DispatchController";
+        String url = "";
         try {
             MobileDAO dao = new MobileDAO();
             boolean result = dao.deleteById(mobileId);

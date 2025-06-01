@@ -34,6 +34,8 @@ public class DispatchController extends HttpServlet {
     private final String SEARCH_CONTROLLER = "SearchController";
     private final String DELETE_CONTROLLER = "DeleteController";
     private final String UPDATE_CONTROLLER = "UpdateController";
+    private final String CREATE_MOBILE_CONTROLLER = "CreateMobileController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -50,6 +52,8 @@ public class DispatchController extends HttpServlet {
                 url = DELETE_CONTROLLER;
             } else if (action.equals("Update")) {
                 url = UPDATE_CONTROLLER;
+            } else if (action.equals("Create")) {
+                url = CREATE_MOBILE_CONTROLLER;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

@@ -67,7 +67,6 @@ public class MobileDAO {
                 int row = stm.executeUpdate();
                 return row > 0;
             }
-            return false;
         } finally {
             if (stm != null) {
                 stm.close();
@@ -76,6 +75,8 @@ public class MobileDAO {
                 con.close();
             }
         }
+        return false;
+
     }
 
     public boolean updateMobile(MobileDTO mobile) throws ClassNotFoundException, SQLException {
@@ -98,7 +99,6 @@ public class MobileDAO {
                 return row > 0;
 
             }
-            return false;
         } finally {
             if (stm != null) {
                 stm.close();
@@ -107,6 +107,8 @@ public class MobileDAO {
                 con.close();
             }
         }
+        return false;
+
     }
 
     public MobileDTO getMobileById(String id) throws SQLException, ClassNotFoundException {
@@ -133,7 +135,6 @@ public class MobileDAO {
                     dto = new MobileDTO(_id, name, price, description, quantity, yearOfProduction, notSale);
                 }
             }
-            return dto;
         } finally {
 
             if (rs != null) {
@@ -147,5 +148,38 @@ public class MobileDAO {
                 con.close();
             }
         }
+        return dto;
+    }
+
+    public boolean insertMobile(MobileDTO mobile) throws ClassNotFoundException, SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "INSERT INTO tbl_Mobile(mobileId, mobileName, description, price, yearOfProduction, quantity, notSale) "
+                        + "VALUES(?,?,?,?,?,?,?)";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, mobile.getMobileId());
+                stm.setString(2, mobile.getMobileName());
+                stm.setString(3, mobile.getDescription());
+                stm.setFloat(4, mobile.getPrice());
+                stm.setInt(5, mobile.getYearOfProduction());
+                stm.setInt(6, mobile.getQuantity());
+                stm.setBoolean(7, mobile.isNotSale());
+                int row = stm.executeUpdate();
+                return row > 0;
+            }
+
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
     }
 }

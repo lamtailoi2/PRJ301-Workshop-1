@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class UserDTO implements Serializable {
 
     private String userId;
-    private String password;
+    private int password;
     private String fullName;
     private int role;
 
     public UserDTO() {
     }
 
-    public UserDTO(String userId, String password, String fullName, int role) {
+    public UserDTO(String userId, int password, String fullName, int role) {
         this.userId = userId;
         this.password = password;
         this.fullName = fullName;
@@ -36,14 +36,14 @@ public class UserDTO implements Serializable {
     /**
      * @return the password
      */
-    public String getPassword() {
+    public int getPassword() {
         return password;
     }
 
     /**
      * @param password the password to set
      */
-    public void setPassword(String password) {
+    public void setPassword(int password) {
         this.password = password;
     }
 

@@ -28,7 +28,7 @@ public class UpdateController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "DispatchController";
+        String url = "";
         String mobileId = request.getParameter("txtMobileId");
         String price = request.getParameter("txtPrice");
         String description = request.getParameter("txtDescription");

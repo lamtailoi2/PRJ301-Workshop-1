@@ -14,12 +14,17 @@
             <h1>Welcome ${fullName}</h1>
         </c:if>
 
+        <a href="createMobile.html">Create new mobile</a>    
 
         <form action="DispatchController">
             <input type="text" name="txtSearchValue" value="${param.txtSearchValue}" placeholder="Enter device name or id...." />
             <input type="hidden" name="txtRole" value="${role}" />
             <input type="submit" value="Search" name="btAction" />
         </form>
+
+
+
+
         <c:if test="${not empty SEARCH_RESULT}">
             <table border="1">
                 <thead>
@@ -49,27 +54,19 @@
                         </td>
                         <td>
                             <input type="text" name="txtPrice" value="${mobile.price}" />
-                            <c:if test="${not empty requestScope.UPDATE_ERRPORS.priceError}">
-                                <br/><span style="color:red">${updateErr.priceError}</span>
-                            </c:if>
+
                         </td>
                         <td>
                             <input type="text" name="txtDescription" value="${mobile.description}" />
-                            <c:if test="${updateErr != null && not empty updateErr.descriptionError}">
-                                <br/><span style="color:red">${updateErr.descriptionError}</span>
-                            </c:if>
+
                         </td>
                         <td>
                             <input type="text" name="txtYearOfProduction" value="${mobile.yearOfProduction}" />\
-                            <c:if test="${updateErr != null && not empty updateErr.quantityError}">
-                                <br/><span style="color:red">${updateErr.yearError}</span>
-                            </c:if>
+
                         </td>
                         <td>
                             <input type="text" name="txtQuantity" value="${mobile.quantity}" />
-                            <c:if test="${updateErr != null && not empty updateErr.quantityError}">
-                                <br/><span style="color:red">${updateErr.quantityError}</span>
-                            </c:if>
+
                         </td>
 
                         <td> <input type="checkbox" name="txtNotSale" value="ON" ${mobile.notSale ? 'checked="checked"' : ''} /> </td>

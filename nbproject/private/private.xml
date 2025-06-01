@@ -5,6 +5,7 @@
         <group>
             <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/user/UserDAO.java</file>
             <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/controller/DeleteController.java</file>
+            <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/util/ValidationHelper.java</file>
             <file>file:/D:/PRJ301/WS01_LoiLT_SU25/web/WEB-INF/web.xml</file>
             <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/controller/DispatchController.java</file>
             <file>file:/D:/PRJ301/WS01_LoiLT_SU25/src/java/loilt/controller/UpdateController.java</file>
