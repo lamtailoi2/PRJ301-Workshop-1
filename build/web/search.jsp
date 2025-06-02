@@ -73,6 +73,7 @@
                                     <input type="submit" value="Update" name="btAction" />
                                     <input type="submit" value="Delete" name="btAction"/>
                                     <input type="hidden" name="lastSearchValue" value="${param.txtSearchValue}" />
+                                    <input type="hidden" name="txtRole" value="${role}" />
                                 </td>
                             </form>
                         </tr>

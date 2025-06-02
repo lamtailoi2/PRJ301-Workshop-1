@@ -3,6 +3,7 @@ package loilt.mobile;
 public class CreateMobileError {
 
     private String idIsExisted;
+    private String idNotValid;
     private String priceIsNotPositiveNumber;
     private String quantityIsNotPositiveNumber;
     private String yearOfProductionIsNotPositiveNumber;
@@ -95,6 +96,20 @@ public class CreateMobileError {
      */
     public void setDescriptionLengthError(String descriptionLengthError) {
         this.descriptionLengthError = descriptionLengthError;
+    }
+
+    /**
+     * @return the idNotValid
+     */
+    public String getIdNotValid() {
+        return idNotValid;
+    }
+
+    /**
+     * @param idNotValid the idNotValid to set
+     */
+    public void setIdNotValid(String idNotValid) {
+        this.idNotValid = idNotValid;
     }
 
 }

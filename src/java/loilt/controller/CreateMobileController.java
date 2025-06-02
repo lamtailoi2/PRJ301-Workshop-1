@@ -63,7 +63,10 @@ public class CreateMobileController extends HttpServlet {
             CreateMobileError errors = new CreateMobileError();
             boolean foundError = false;
 
-            if (dao.getMobileById(mobileId) != null) {
+            if (!ValidationHelper.matchWithPattern(mobileId, ValidationHelper.VALID_MOBILE_ID)) {
+                errors.setIdNotValid("Mobile id must be between 3 and 20 characters!!!");
+                foundError = true;
+            } else if (dao.getMobileById(mobileId) != null) {
                 errors.setIdIsExisted("Id is Existed!!!");
                 foundError = true;
             }

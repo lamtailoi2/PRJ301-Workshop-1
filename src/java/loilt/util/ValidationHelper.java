@@ -4,6 +4,7 @@ public class ValidationHelper {
 
     public final static String VALID_MOBILE_NAME = "^.{3,20}$";
     public final static String VALID_DESCRIPTION = "^.{5,250}$";
+    public final static String VALID_MOBILE_ID = "^.{3,20}";
 
     public static boolean isEmpty(String value) {
         return value == null || value.trim().isEmpty();

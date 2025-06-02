@@ -64,7 +64,7 @@ public class MobileDAO {
             if (con != null) {
                 String sql = "SELECT mobileId, mobileName, price, description, quantity, notSale , yearOfProduction "
                         + "FROM tbl_Mobile "
-                        + "WHERE price >= ? AND price <= ?";
+                        + "WHERE price >= ? AND price <= ? AND notSale = 0";
                 stm = con.prepareStatement(sql);
                 stm.setFloat(1, minPrice);
                 stm.setFloat(2, maxPrice);

@@ -12,6 +12,7 @@
         <h1>Create New Mobile</h1>
         <form action="DispatchController" method="POST">
             Id<input type="text" name="txtMobileId" value="" /> <br />
+            <p style="color: red"> ${errors.idNotValid} </p>
             <p style="color: red"> ${errors.idIsExisted} </p>
             Name<input type="text" name="txtMobileName" value="" /> <br />
             <p style="color: red"> ${errors.mobileNameLengthError} </p>

@@ -1,8 +1,9 @@
 package loilt.cart;
 
+import java.io.Serializable;
 import loilt.mobile.MobileDTO;
 
-public class CartItem {
+public class CartItem implements Serializable {
 
     private MobileDTO mobile;
     private int quantity;

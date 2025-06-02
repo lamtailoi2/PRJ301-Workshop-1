@@ -14,7 +14,7 @@
             <h1>${user.fullName}'s Cart</h1>
         </c:if>
 
-        <a href="shop.jsp">Back to shop</a>
+            <a href="shop.jsp">Back to shop</a>
 
         <c:if test="${not empty sessionScope.CART}">
             <c:set var="cart" value="${sessionScope.CART}" />
@@ -49,7 +49,13 @@
                     </form>
                 </tr>
             </c:forEach>
-
+            <tr> 
+                <td colspan="7"> 
+                    <form action="DispatchController" method="POST">
+                        <input type="submit" value="Checkout" name="btAction" style="width: 100%; " />
+                    </form> 
+                </td> 
+            </tr>
         </tbody>
     </table>
 

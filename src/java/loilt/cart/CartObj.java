@@ -43,4 +43,15 @@ public class CartObj implements Serializable {
             this.items = null;
         }
     }
+
+    public float getTotalPrice() {
+        if (items == null) {
+            return 0;
+        }
+        float total = 0;
+        for (CartItem item : items.values()) {
+            total += item.getMobile().getQuantity() * item.getMobile().getPrice();
+        }
+        return total;
+    }
 }

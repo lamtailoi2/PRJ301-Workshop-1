@@ -28,6 +28,7 @@ public class DispatchController extends HttpServlet {
     private final String CREATE_MOBILE_CONTROLLER = "CreateMobileController";
     private final String ADD_TO_CART_CONTROLLER = "AddToCartController";
     private final String REMOVE_FROM_CART_CONTROLLER = "RemoveFromCartController";
+    private final String CHECKOUT_CONTROLLER = "CheckoutController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,6 +52,8 @@ public class DispatchController extends HttpServlet {
                 url = ADD_TO_CART_CONTROLLER;
             } else if (action.equals("Remove Item")) {
                 url = REMOVE_FROM_CART_CONTROLLER;
+            } else if (action.equals("Checkout")) {
+                url = CHECKOUT_CONTROLLER;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

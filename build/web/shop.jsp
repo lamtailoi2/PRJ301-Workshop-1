@@ -33,7 +33,6 @@
                                 <th>Description</th>
                                 <th>YearOfProduction</th>
                                 <th>Quantity</th>
-                                <th>Not Sale</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -54,7 +53,6 @@
                                 </td>
                                 <td>${mobile.quantity}
                                 </td>
-                                <td><input type="checkbox" name="txtNotSale" value="ON" ${mobile.notSale ? 'checked="checked"' : ''} readonly /></td>
                                 <td>
                                     <input type="submit" value="Add To Cart" name="btAction" />
                                     <input type="hidden" name="txtRole" value="${role}" />
