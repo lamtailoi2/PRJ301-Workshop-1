@@ -7,13 +7,13 @@ import java.sql.SQLException;
 
 public class DBHelper implements Serializable {
 
-    private final static String DB_NAME = "LOILT_SU25";
+    private final static String DB_NAME = "PRJ301_WS1";
     private final static String DB_USER = "sa";
-    private final static String DB_PASSWORD = "Admin123!";
+    private final static String DB_PASSWORD = "12345";
 
     public static Connection makeConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String url = "jdbc:sqlserver://localhost:1433;databaseName= " + DB_NAME;
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=" + DB_NAME;
         Connection con = DriverManager.getConnection(url, DB_USER, DB_PASSWORD);
         return con;
     }

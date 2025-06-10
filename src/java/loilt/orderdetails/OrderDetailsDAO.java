@@ -11,19 +11,21 @@ import loilt.util.DBHelper;
 
 public class OrderDetailsDAO implements Serializable {
 
-    public boolean insertOrderDetail(String mobileId, int quantity, float price) throws ClassNotFoundException, SQLException {
+    public boolean insertOrderDetail(String userId, String mobileId, int quantity, float price)
+            throws ClassNotFoundException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "INSERT INTO tbl_OrderDetails(mobileId, quantity, price, total) "
-                        + "VALUES(?,?,?,?)";
+                String sql = "INSERT INTO tbl_OrderDetails(userId, mobileId, quantity, price, total) "
+                        + "VALUES(?, ?, ?, ?, ?)";
                 stm = con.prepareStatement(sql);
-                stm.setString(1, mobileId);
-                stm.setInt(2, quantity);
-                stm.setFloat(3, price);
-                stm.setFloat(4, price * quantity);
+                stm.setString(1, userId);
+                stm.setString(2, mobileId);
+                stm.setInt(3, quantity);
+                stm.setFloat(4, price);
+                stm.setFloat(5, price * quantity);
                 int row = stm.executeUpdate();
                 return row > 0;
             }
@@ -46,17 +48,18 @@ public class OrderDetailsDAO implements Serializable {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "SELECT orderDetailId, mobileId, quantity, price, total "
+                String sql = "SELECT orderDetailId, userId, mobileId, quantity, price, total "
                         + "FROM tbl_OrderDetails";
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     int orderDetailId = rs.getInt("orderDetailId");
+                    String userId = rs.getString("userId");
                     String mobileId = rs.getString("mobileId");
                     int quantity = rs.getInt("quantity");
                     float price = rs.getFloat("price");
                     float total = rs.getFloat("total");
-                    list.add(new OrderDetailsDTO(orderDetailId, mobileId, quantity, price, total));
+                    list.add(new OrderDetailsDTO(orderDetailId, userId, mobileId, quantity, price, total));
                 }
 
             }

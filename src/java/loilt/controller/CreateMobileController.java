@@ -17,17 +17,17 @@ import loilt.mobile.MobileDTO;
 import loilt.user.UserDTO;
 import loilt.util.ValidationHelper;
 
-@WebServlet(name = "CreateMobileController", urlPatterns = {"/CreateMobileController"})
+@WebServlet(name = "CreateMobileController", urlPatterns = { "/CreateMobileController" })
 public class CreateMobileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     private final String SUCCESS_PAGE = "createSuccess.html";
     private final String LOGIN_PAGE = "login.html";
@@ -63,16 +63,36 @@ public class CreateMobileController extends HttpServlet {
             CreateMobileError errors = new CreateMobileError();
             boolean foundError = false;
 
-            if (!ValidationHelper.matchWithPattern(mobileId, ValidationHelper.VALID_MOBILE_ID)) {
+            if (ValidationHelper.isEmpty(mobileId)) {
+                errors.setIdNotValid("Mobile id is required!!!");
+                foundError = true;
+            }
+
+            if (!ValidationHelper.length(mobileId, 3, 20)) {
                 errors.setIdNotValid("Mobile id must be between 3 and 20 characters!!!");
+                foundError = true;
+            }
+
+            if (!ValidationHelper.matchWithPattern(mobileId, ValidationHelper.VALID_MOBILE_ID)) {
+                errors.setIdNotValid("Mobile id must not contain special characters or spaces!!!");
                 foundError = true;
             } else if (dao.getMobileById(mobileId) != null) {
                 errors.setIdIsExisted("Id is Existed!!!");
                 foundError = true;
             }
 
-            if (!ValidationHelper.matchWithPattern(mobileName, ValidationHelper.VALID_MOBILE_NAME)) {
+            if (ValidationHelper.isEmpty(mobileName)) {
+                errors.setMobileNameLengthError("Mobile name is required!!!");
+                foundError = true;
+            }
+
+            if (!ValidationHelper.length(mobileName, 3, 20)) {
                 errors.setMobileNameLengthError("Mobile name must be between 3 and 20 characters!!!");
+                foundError = true;
+            }
+
+            if (!ValidationHelper.matchWithPattern(mobileName, ValidationHelper.VALID_MOBILE_NAME)) {
+                errors.setMobileNameLengthError("Mobile name must not contain special characters!!!");
                 foundError = true;
             }
 
@@ -92,7 +112,8 @@ public class CreateMobileController extends HttpServlet {
             }
 
             if (!ValidationHelper.isPositiveInt(yearOfProduction)) {
-                errors.setYearOfProductionIsNotPositiveNumber("Year of Production must be a positive integer number!!!");
+                errors.setYearOfProductionIsNotPositiveNumber(
+                        "Year of Production must be a positive integer number!!!");
                 foundError = true;
             }
 
@@ -104,7 +125,8 @@ public class CreateMobileController extends HttpServlet {
             }
 
             // Insert Logic
-            MobileDTO dto = new MobileDTO(mobileId, mobileName, Float.parseFloat(price), description, Integer.parseInt(quantity), Integer.parseInt(yearOfProduction), notSale != null);
+            MobileDTO dto = new MobileDTO(mobileId, mobileName, Float.parseFloat(price), description,
+                    Integer.parseInt(quantity), Integer.parseInt(yearOfProduction), notSale != null);
             boolean result = dao.insertMobile(dto);
             if (result) {
                 url = SUCCESS_PAGE;
@@ -118,14 +140,15 @@ public class CreateMobileController extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -135,10 +158,10 @@ public class CreateMobileController extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

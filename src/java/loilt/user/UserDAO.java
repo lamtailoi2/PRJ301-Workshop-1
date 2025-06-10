@@ -17,7 +17,7 @@ public class UserDAO implements Serializable {
             con = DBHelper.makeConnection();
             if (con != null) {
                 String sql = "SELECT password "
-                        + "FROM tbl_Users "
+                        + "FROM tbl_User "
                         + "WHERE userId = ?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, userId);
@@ -54,7 +54,7 @@ public class UserDAO implements Serializable {
             con = DBHelper.makeConnection();
             if (con != null) {
                 String sql = "SELECT userId, password, fullname, role "
-                        + "FROM tbl_Users "
+                        + "FROM tbl_User "
                         + "WHERE userId = ?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, id);

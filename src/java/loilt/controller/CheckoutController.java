@@ -21,22 +21,23 @@ import loilt.cart.CartObj;
 import loilt.mobile.MobileDTO;
 import loilt.orderdetails.OrderDetailsDAO;
 import loilt.orderdetails.OrderDetailsDTO;
+import loilt.user.UserDTO;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "CheckoutController", urlPatterns = {"/CheckoutController"})
+@WebServlet(name = "CheckoutController", urlPatterns = { "/CheckoutController" })
 public class CheckoutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     private final String SUCCESS_PAGE = "checkoutSuccess.jsp";
 
@@ -50,12 +51,14 @@ public class CheckoutController extends HttpServlet {
             return;
         }
         CartObj cart = (CartObj) session.getAttribute("CART");
+        UserDTO user = (UserDTO) session.getAttribute("USER");
         if (cart != null) {
             try {
                 OrderDetailsDAO dao = new OrderDetailsDAO();
                 for (CartItem item : cart.getItems().values()) {
                     MobileDTO mobile = item.getMobile();
-                    dao.insertOrderDetail(mobile.getMobileId(), item.getQuantity(), mobile.getPrice());
+                    dao.insertOrderDetail(user.getUserId(), mobile.getMobileId(), item.getQuantity(),
+                            mobile.getPrice());
                     System.out.println(">>>>>>>>>>>>>>>>" + mobile.getMobileName());
                 }
                 session.removeAttribute("CART");
@@ -73,14 +76,15 @@ public class CheckoutController extends HttpServlet {
         }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -90,10 +94,10 @@ public class CheckoutController extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

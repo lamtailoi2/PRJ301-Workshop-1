@@ -2,9 +2,9 @@ package loilt.util;
 
 public class ValidationHelper {
 
-    public final static String VALID_MOBILE_NAME = "^.{3,20}$";
-    public final static String VALID_DESCRIPTION = "^.{5,250}$";
-    public final static String VALID_MOBILE_ID = "^.{3,20}";
+    public final static String VALID_MOBILE_ID = "^[a-zA-Z0-9]{3,20}$";
+    public final static String VALID_MOBILE_NAME = "^[a-zA-Z0-9]{3,20}$";
+    public final static String VALID_DESCRIPTION = "^[a-zA-Z0-9]{5,250}$";
 
     public static boolean isEmpty(String value) {
         return value == null || value.trim().isEmpty();
@@ -41,5 +41,12 @@ public class ValidationHelper {
             return true;
         }
         return false;
+    }
+
+    public static boolean length(String value, int min, int max) {
+        if (value == null) {
+            return false;
+        }
+        return value.length() >= min && value.length() <= max;
     }
 }
