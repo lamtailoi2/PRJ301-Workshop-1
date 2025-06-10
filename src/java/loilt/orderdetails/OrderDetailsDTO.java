@@ -7,19 +7,19 @@ public class OrderDetailsDTO {
     private int quantity;
     private float price;
     private float total;
+    private String userId;
 
     public OrderDetailsDTO() {
     }
 
-    public OrderDetailsDTO(int orderDetailId, String mobileId, int quantity, float price, float total) {
+    public OrderDetailsDTO(int orderDetailId, String mobileId, int quantity, float price, float total, String userId) {
         this.orderDetailId = orderDetailId;
         this.mobileId = mobileId;
         this.quantity = quantity;
         this.price = price;
         this.total = total;
+        this.userId = userId;
     }
-    
-    
 
     /**
      * @return the orderDetailId
@@ -89,6 +89,20 @@ public class OrderDetailsDTO {
      */
     public void setTotal(float total) {
         this.total = total;
+    }
+
+    /**
+     * @return the userId
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 }

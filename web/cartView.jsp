@@ -13,8 +13,7 @@
             <c:set var="user" value="${sessionScope.USER}" />
             <h1>${user.fullName}'s Cart</h1>
         </c:if>
-
-            <a href="shop.jsp">Back to shop</a>
+        <a href="shop.jsp">Back to shop</a>
 
         <c:if test="${not empty sessionScope.CART}">
             <c:set var="cart" value="${sessionScope.CART}" />

@@ -7,12 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import loilt.cart.CartItem;
 import loilt.cart.CartObj;
-import loilt.mobile.MobileDAO;
 
 @WebServlet(name = "RemoveFromCartController", urlPatterns = {"/RemoveFromCartController"})
 public class RemoveFromCartController extends HttpServlet {

@@ -2,29 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/util/DBHelper.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/controller/DeleteController.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/web/createMobile.jsp</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/util/ValidationHelper.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/controller/CheckoutController.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/web/checkoutSuccess.jsp</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/cart/CartItem.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/web/search.jsp</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/orderdetails/OrderDetailsDTO.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/mobile/CreateMobileError.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/user/UserDAO.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/mobile/MobileDTO.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/web/cartView.jsp</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/cart/CartObj.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/controller/DispatchController.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/web/shop.jsp</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/controller/CreateMobileController.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/mobile/MobileDAO.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/controller/UpdateController.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/src/java/loilt/orderdetails/OrderDetailsDAO.java</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/web/createMobile.html</file>
-            <file>file:/E:/PRJ301/PRJ301-Workshop-1/web/createSuccess.html</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

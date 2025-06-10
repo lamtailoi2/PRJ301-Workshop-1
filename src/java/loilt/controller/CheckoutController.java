@@ -13,14 +13,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import loilt.cart.CartItem;
 import loilt.cart.CartObj;
 import loilt.mobile.MobileDTO;
 import loilt.orderdetails.OrderDetailsDAO;
-import loilt.orderdetails.OrderDetailsDTO;
+import loilt.user.UserDTO;
 
 /**
  *
@@ -39,7 +38,7 @@ public class CheckoutController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private final String SUCCESS_PAGE = "checkoutSuccess.jsp";
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -50,25 +49,22 @@ public class CheckoutController extends HttpServlet {
             return;
         }
         CartObj cart = (CartObj) session.getAttribute("CART");
+        UserDTO user = (UserDTO) session.getAttribute("USER");
         if (cart != null) {
             try {
                 OrderDetailsDAO dao = new OrderDetailsDAO();
                 for (CartItem item : cart.getItems().values()) {
                     MobileDTO mobile = item.getMobile();
-                    dao.insertOrderDetail(mobile.getMobileId(), item.getQuantity(), mobile.getPrice());
-                    System.out.println(">>>>>>>>>>>>>>>>" + mobile.getMobileName());
+                    dao.insertOrderDetail(mobile.getMobileId(), item.getQuantity(), mobile.getPrice(), user.getUserId());
                 }
                 session.removeAttribute("CART");
-                List<OrderDetailsDTO> list = dao.getAll();
-                request.setAttribute("ORDER_DETAILS", list);
                 url = SUCCESS_PAGE;
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(CheckoutController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(CheckoutController.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                RequestDispatcher rd = request.getRequestDispatcher(url);
-                rd.forward(request, response);
+                response.sendRedirect(url);
             }
         }
     }
