@@ -3,6 +3,7 @@ package loilt.orderdetails;
 public class OrderDetailsDTO {
 
     private int orderDetailId;
+    private String userId;
     private String mobileId;
     private int quantity;
     private float price;
@@ -11,15 +12,14 @@ public class OrderDetailsDTO {
     public OrderDetailsDTO() {
     }
 
-    public OrderDetailsDTO(int orderDetailId, String mobileId, int quantity, float price, float total) {
+    public OrderDetailsDTO(int orderDetailId, String userId, String mobileId, int quantity, float price, float total) {
         this.orderDetailId = orderDetailId;
+        this.userId = userId;
         this.mobileId = mobileId;
         this.quantity = quantity;
         this.price = price;
         this.total = total;
     }
-    
-    
 
     /**
      * @return the orderDetailId
@@ -33,6 +33,14 @@ public class OrderDetailsDTO {
      */
     public void setOrderDetailId(int orderDetailId) {
         this.orderDetailId = orderDetailId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     /**
